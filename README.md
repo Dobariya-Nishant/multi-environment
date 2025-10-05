@@ -1,4 +1,4 @@
-# 🌿 Activatree Infrastructure
+# 🌿 Terraform Infrastructure
 
 A production-ready **AWS infrastructure-as-code (IaC)** setup built with **Terraform** and **Terragrunt**, following a multi-environment architecture (`dev`, `stag`, `prod`).  
 This project provisions a complete **ECS with EC2 launch type**, **Jenkins CI/CD**, **ALB**, **EFS**, and **VPC networking** with modular, reusable Terraform components.
