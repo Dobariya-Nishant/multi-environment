@@ -26,26 +26,14 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "subnet_ids" {
+variable "subnet_id" {
   description = "List of subnet IDs for the Auto Scaling Group to launch instances in. Determines availability zones."
-  type        = list(string)
+  type        = string
 }
 
 # ====================
 # Security Group Rules
 # ====================
-
-variable "enable_public_https" {
-  description = "Allow inbound traffic on port 443 (HTTPS) from the internet."
-  type        = bool
-  default     = false
-}
-
-variable "enable_public_http" {
-  description = "Allow inbound traffic on port 80 (HTTP) from the internet."
-  type        = bool
-  default     = false
-}
 
 variable "enable_public_ssh" {
   description = "Allow inbound SSH access (port 22) from any IP (0.0.0.0/0). Use with caution in production."
@@ -57,12 +45,6 @@ variable "enable_ssh_from_current_ip" {
   description = "Allow SSH access (port 22) only from your current public IP."
   type        = bool
   default     = false
-}
-
-variable "security_groups" {
-  description = "Optional list of additional security group IDs to associate with the EC2 instances."
-  type        = list(string)
-  default     = []
 }
 
 # =======================
@@ -103,78 +85,6 @@ variable "user_data" {
   description = "Base64-encoded user data script to bootstrap EC2 instances (e.g., install packages, join ECS cluster)."
   type        = string
   default     = ""
-}
-
-# ===================
-# Key Pair Management
-# ===================
-
-variable "key_pair_name" {
-  description = "Name of an existing EC2 Key Pair to use. If not provided, a new key pair will be created."
-  type        = string
-  default     = null
-}
-
-variable "create_new_key_pair" {
-  description = "Set to true to automatically create a new EC2 key pair and store it locally."
-  type        = bool
-  default     = false
-}
-
-# ===============
-# ECS Integration
-# ===============
-
-variable "ecs_cluster_name" {
-  description = "Name of the ECS cluster to register the EC2 instances to. If set, ECS-specific AMI and user data will be used."
-  type        = string
-  default     = null
-}
-
-# ==================
-# Auto Scaling Group
-# ==================
-
-variable "desired_capacity" {
-  description = "Number of instances the Auto Scaling Group should launch initially."
-  type        = number
-  default     = 2
-}
-
-variable "max_size" {
-  description = "Maximum number of instances the Auto Scaling Group can scale up to."
-  type        = number
-  default     = 6
-}
-
-variable "min_size" {
-  description = "Minimum number of instances the Auto Scaling Group should maintain."
-  type        = number
-  default     = 1
-}
-
-variable "placement_strategy" {
-  description = "Placement strategy for EC2 instances within the Auto Scaling Group (e.g., cluster, spread)."
-  type        = string
-  default     = "spread"
-}
-
-variable "health_check_type" {
-  description = "Health check type for the Auto Scaling Group. Valid values: 'EC2', 'ELB'."
-  type        = string
-  default     = "EC2"
-}
-
-variable "target_group_arns" {
-  description = "List of target group ARNs to register EC2 instances (used when attached to a Load Balancer)."
-  type        = list(string)
-  default     = []
-}
-
-variable "protect_from_scale_in" {
-  description = "Protect EC2 instances from being terminated during scale-in events."
-  type        = bool
-  default     = false
 }
 
 # ================================

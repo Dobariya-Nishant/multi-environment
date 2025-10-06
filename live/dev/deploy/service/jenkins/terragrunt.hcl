@@ -39,7 +39,6 @@ dependency "jenkins_efs" {
   }
 }
 
-
 inputs = {
   name          = "jenkins"
   desired_count = 1
@@ -59,8 +58,8 @@ inputs = {
 
   task = {
     name      = "jenkins"
-    cpu       = 256
-    memory    = 512
+    cpu    = 1812
+    memory = 800
     image_uri = "jenkins/jenkins:lts-alpine"
     essential = true
     log_region = include.env.locals.region

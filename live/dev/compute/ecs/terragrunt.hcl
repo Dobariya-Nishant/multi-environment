@@ -19,11 +19,11 @@ dependency "jenkins_asg" {
 
 inputs = {
   name = include.env.inputs.project_name
-  # auto_scaling_groups = {
-  #   jenkins = {
-  #     name            = "jenkins"
-  #     arn             = dependency.jenkins_asg.outputs.arn
-  #     target_capacity = 100
-  #   }
-  # }
+  auto_scaling_groups = {
+    jenkins = {
+      name            = "jenkins"
+      arn             = dependency.jenkins_asg.outputs.arn
+      target_capacity = 100
+    }
+  }
 }
