@@ -90,15 +90,15 @@ variable "task" {
     }))
     command       = optional(list(string),[])
     task_role_arn = optional(string, null)
-    mountPoints   = list(object({
+    mountPoints   = optional(list(object({
       sourceVolume  = string
       containerPath = string
-    }))
-    volumes       = list(object({
+    })))
+    volumes       = optional(list(object({
       name            = string
       efs_id          = string
       access_point_id = string
-    }))
+    })),[])
   })
 }
 
